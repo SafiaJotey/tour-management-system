@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const dotnev = require('dotenv').config();
 const app = require('./app');
+const tourRoute = require('./routes/v1/tour.route');
 //server
 const port = process.env.PORT || 8000;
 
@@ -12,6 +13,7 @@ mongoose
     console.log('Database connected successfully');
   });
 //routes
+app.use('/api/v1/tour', tourRoute);
 app.get('/', (req, res) => {
   res.send('Route is working');
 });
