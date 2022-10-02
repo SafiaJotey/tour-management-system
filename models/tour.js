@@ -13,15 +13,15 @@ const tourSchema = mongoose.Schema(
       type: String,
       required: [true, 'A subTitle is required'],
       trim: true,
-      minLength: [5, 'Too small!'],
-      maxLength: [50, 'Too long!'],
+      minLength: [10, 'Too small!'],
+      maxLength: [100, 'Too long!'],
     },
     description: {
       type: String,
       required: [true, 'Please add a proper description'],
       trim: true,
-      minLength: [10, 'Too small!'],
-      maxLength: [200, 'Too long!'],
+      minLength: [20, 'Too small!'],
+      maxLength: [500, 'Too long!'],
     },
     location: {
       type: String,
@@ -68,24 +68,7 @@ const tourSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-//middlewares of mongoose
-productSchema.pre('save', function (next) {
-  if (this.quantity === 0) {
-    this.status = 'out-of-stock';
-  }
-  next();
-});
-productSchema.post('save', function (doc, next) {
-  console.log('After Saving data');
-  next();
-});
-
-//instance creation
-productSchema.methods.logger = function () {
-  console.log(`Data saved for${this.name}`);
-};
-
 //Model creation
-const Product = mongoose.model('Product', productSchema);
+const Tour = mongoose.model('Tour', tourSchema);
 
-module.exports = Product;
+module.exports = Tour;
