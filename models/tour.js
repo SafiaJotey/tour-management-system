@@ -63,6 +63,10 @@ const tourSchema = mongoose.Schema(
           "Values can't be {VALUE} , it must be on-going/comming-soon/discontinued",
       },
     },
+    view: {
+      type: Number,
+      default: 0,
+    },
   },
 
   { timestamps: true }

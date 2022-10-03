@@ -64,20 +64,36 @@ exports.getTourById = async (req, res, next) => {
     });
   }
 };
-exports.updateATour = async (req, res, next) => {
+exports.getTrendingtTour = async (req, res, next) => {
   try {
-    const { id } = req.params;
-
-    const upadatedProduct = await tourServices.updateTourtService(id, req.body);
+    const result = await tourServices.getTourTrending();
     res.status(200).send({
       success: true,
-      message: `product with id: ${id} successfully updated`,
-      data: upadatedProduct,
+      messege: `Successfully get most tours `,
+      data: result,
     });
   } catch (error) {
     res.status(400).send({
       success: false,
-      message: "couldn't update the product",
+      message: "Tour didn't get",
+      error: error.message,
+    });
+  }
+};
+exports.updateATour = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const upadatedTour = await tourServices.updateTourService(id, req.body);
+    res.status(200).send({
+      success: true,
+      message: `Tour with id: ${id} successfully updated`,
+      data: upadatedTour,
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      message: "couldn't update theTour ",
       error: error.message,
     });
   }

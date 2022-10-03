@@ -17,12 +17,17 @@ exports.getTourByIDService = async (id) => {
   const result = await Tour.find({ _id: id });
   return result;
 };
-// exports.getTourViewCount = async (id) => {
-//   const result = await Tour.find({ _id: id }, { $set: { view: { $in: 1 } } });
+exports.getTourViewCount = async (id) => {
+  const result = await Tour.updateOne({ _id: id }, { $inc: { view: 1 } });
 
-//   return result;
-// };
-exports.updateTourtService = async (id, data) => {
+  return result;
+};
+exports.getTourTrending = async () => {
+  const result = await Tour.find({}).sort({ view: -1 }).limit(3);
+
+  return result;
+};
+exports.updateTourService = async (id, data) => {
   const updatedTour = await Tour.updateOne(
     { _id: id },
     { $set: data },
