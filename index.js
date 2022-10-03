@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotnev = require('dotenv').config();
 const cors = require('cors');
 const app = express();
 
@@ -7,10 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-module.exports = app;
-const mongoose = require('mongoose');
-const dotnev = require('dotenv').config();
-const app = require('./app');
 const tourRoute = require('./routes/v1/tour.route');
 //server
 const port = process.env.PORT || 5000;
