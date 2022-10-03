@@ -64,3 +64,38 @@ exports.getTourById = async (req, res, next) => {
     });
   }
 };
+exports.updateATour = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const upadatedProduct = await tourServices.updateTourtService(id, req.body);
+    res.status(200).send({
+      success: true,
+      message: `product with id: ${id} successfully updated`,
+      data: upadatedProduct,
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      message: "couldn't update the product",
+      error: error.message,
+    });
+  }
+};
+
+exports.getcheapestTour = async (req, res, next) => {
+  try {
+    const tours = await tourServices.getTourtcheapestService();
+    res.status(200).send({
+      success: true,
+      message: `Success fully get the chepest 3 Tours`,
+      data: tours,
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      message: "couldn't get the chepest tours",
+      error: error.message,
+    });
+  }
+};
