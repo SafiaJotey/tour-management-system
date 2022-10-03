@@ -3,7 +3,7 @@ const dotnev = require('dotenv').config();
 const app = require('./app');
 const tourRoute = require('./routes/v1/tour.route');
 //server
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 mongoose
   .connect(process.env.DATABASE_URL, {
